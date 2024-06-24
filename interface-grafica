@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+import os
+import sys
 
 def converter(valor, opcao):
     if opcao == 1:
@@ -20,15 +22,28 @@ def realizar_conversao(valor_str, opcao, resultado_label, historico_listbox, opc
         valor = float(valor_str)
         opcao = opcao + 1
         resultado = converter(valor, opcao)
-        resultado_label.config(text=f"Resultado: {resultado:,.4f}".replace(",", "_").replace(".", ",").replace("_", "."))  # Inverte vírgula e ponto
+        resultado_label.config(text=f"Resultado: {resultado:,.4f}".replace(",", "_").replace(".", ",").replace("_", "."), style="GrayShadow.TLabel")
         historico_listbox.insert(0, f"{valor} - {opcoes[opcao-1]} = {resultado:,.4f}".replace(",", "_").replace(".", ",").replace("_", "."))
     except ValueError:
-        resultado_label.config(text="Erro: Digite um número válido.")
+        resultado_label.config(text="Erro: Digite um número válido.", style="Error.TLabel")
+    else:  # Adicione este bloco else
+        resultado_label.config(style="GrayShadow.TLabel")  # Redefine o estilo para azul se o valor for válido
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def criar_interface():
     janela = tk.Tk()
     janela.title("Conversor de Medidas de Imóveis do IAT")
     janela.configure(bg="#D3D3D3")
+    icone = tk.PhotoImage(file=resource_path("imagens/tecnologia2.png"))  #caminho para o icone
+    janela.iconphoto(True, icone)
 
     style = ttk.Style()
     style.configure("Shadow.TLabel", background="#121212", foreground="white", font=("Arial", 12), padding=5, relief="flat")
@@ -38,6 +53,7 @@ def criar_interface():
     style.configure("Title.TLabel", background="#D3D3D3", foreground="black", font=("Arial", 16, "bold"))
     style.configure("Developer.TLabel", background="#D3D3D3", foreground="black", font=("Arial", 10, "bold"))
     style.configure("LightGray.TLabel", background="#D3D3D3", foreground="black", font=("Arial", 12, "bold"))
+    style.configure("Error.TLabel", background="#D3D3D3", foreground="red", font=("Arial", 14, "bold"), padding=5, relief="flat")
 
     # Widgets
     label_titulo = ttk.Label(janela, text="Conversor de Medidas de Imóveis - Patrimônio IAT", style="Title.TLabel")
@@ -74,11 +90,17 @@ def criar_interface():
     listbox_historico = tk.Listbox(janela, width=50, height=5, font=("Arial", 10))
     listbox_historico.grid(row=5, column=0, columnspan=3, padx=5, pady=5)
 
+    # Função para lidar com o Enter no Entry
+    def on_entry_return(event):
+        on_button_click()
+
     def on_button_click():
         realizar_conversao(entry_valor.get(), combobox_opcao.current(), label_resultado, listbox_historico, opcoes)
 
     botao_converter = ttk.Button(janela, text="Converter", command=on_button_click, style="TButton")
     botao_converter.grid(row=2, column=1, rowspan=2, padx=5, pady=5)
+
+    entry_valor.bind("<Return>", on_entry_return)  # Associa a tecla Enter ao Entry
 
     def limpar():
         entry_valor.delete(0, tk.END)
@@ -88,6 +110,8 @@ def criar_interface():
 
     botao_limpar = ttk.Button(janela, text="Limpar", command=limpar, style="TButton")
     botao_limpar.grid(row=6, column=0, columnspan=3, pady=10)
+
+    janela.bind("<Escape>", lambda event: limpar()) # Associa a tecla Esc à função limpar
 
     janela.mainloop()
 
