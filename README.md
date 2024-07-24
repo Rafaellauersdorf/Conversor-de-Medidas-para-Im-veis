@@ -1,8 +1,12 @@
-# Conversor-de-Medidas-para-Imóveis
+# Conversor de Medidas para Imóveis
 
-Conversor de medidas de imóveis para uso geral em Python para uso em prompt. Posteriormente o objetivo é criar uma interface gráfica para esse script.
+Este código cria uma interface gráfica do usuário (GUI) para um conversor de medidas de imóveis, especificamente entre hectares, alqueires e metros quadrados. Ele foi desenvolvido para o Instituto de Terras, Cartografia e Geociências do Paraná (IAT) e inclui recursos como histórico de conversões e tratamento de erros.
 
-Criada interface gráfica para utilização através de um executável.
+# Bibliotecas utilizadas:
+   - Tkinter
+   - Os
+   - Sys
+
    Converte as unidades:
   - HECTARES PARA ALQUEIRES
   - HECTARES PARA METROS QUADRADOS
