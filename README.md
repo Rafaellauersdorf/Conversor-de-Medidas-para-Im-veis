@@ -7,7 +7,7 @@ Este código cria uma interface gráfica do usuário (GUI) para um conversor de 
    - Os
    - Sys
 
-   Converte as unidades:
+   <strong>Converte as unidades:</strong>
   - HECTARES PARA ALQUEIRES
   - HECTARES PARA METROS QUADRADOS
   - ALQUEIRES PARA HECTARES
@@ -15,4 +15,4 @@ Este código cria uma interface gráfica do usuário (GUI) para um conversor de 
   - METROS QUADRADOS PARA HECTARES
   - METROS QUADRADOS PARA ALQUEIRES
     
-Obs: Considera a medida de SP para Alqueires.
+<strong>Obs: Considera a medida de SP para Alqueires.</strong>
