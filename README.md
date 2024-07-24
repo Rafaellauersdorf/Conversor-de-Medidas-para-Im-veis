@@ -2,7 +2,7 @@
 
 Este código cria uma interface gráfica do usuário (GUI) para um conversor de medidas de imóveis, especificamente entre hectares, alqueires e metros quadrados. Ele foi desenvolvido para o Instituto de Terras, Cartografia e Geociências do Paraná (IAT) e inclui recursos como histórico de conversões e tratamento de erros.
 
-# Bibliotecas utilizadas:
+## Bibliotecas utilizadas:
    - Tkinter
    - Os
    - Sys
